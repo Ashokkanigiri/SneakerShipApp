@@ -2,6 +2,8 @@ package com.example.mynewsapp.service.di.modules.viewmodelmodule
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.ashok.kanigiri.sneakershipapp.MainActivityViewModel
+import com.ashok.kanigiri.sneakershipapp.feature.home.viewmodel.HomeViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -9,25 +11,15 @@ import dagger.multibindings.IntoMap
 @Module
 abstract class ViewModelModule {
 
-//    @Binds
-//    @IntoMap
-//    @ViewModelKey(SplashViewModel::class)
-//    abstract fun bindsSplashviewModel(splashViewModel: SplashViewModel): ViewModel
-//
-//    @Binds
-//    @IntoMap
-//    @ViewModelKey(HeadlineViewModel::class)
-//    abstract fun bindsHeadlineViewModel(headlinesViewmodel: HeadlineViewModel): ViewModel
-//
-//    @Binds
-//    @IntoMap
-//    @ViewModelKey(HeadlineDetailViewModel::class)
-//    abstract fun bindsHeadlineDetailViewModel(headlineDetailViewModel: HeadlineDetailViewModel): ViewModel
-//
-//    @Binds
-//    @IntoMap
-//    @ViewModelKey(SearchViewModel::class)
-//    abstract fun bindsSearchViewModel(headlineDetailViewModel: SearchViewModel): ViewModel
+    @Binds
+    @IntoMap
+    @ViewModelKey(HomeViewModel::class)
+    abstract fun bindsHomeViewModel(homeViewModel: HomeViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MainActivityViewModel::class)
+    abstract fun bindsMainActivityViewModel(mainActivityViewModel: MainActivityViewModel): ViewModel
 
     @Binds
     abstract fun bindsViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory

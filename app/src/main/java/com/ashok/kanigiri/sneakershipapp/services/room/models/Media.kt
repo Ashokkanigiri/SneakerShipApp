@@ -1,3 +1,9 @@
 package com.ashok.kanigiri.sneakershipapp.services.room.models
 
-data class Media(val imageUrl: String, val smallImageUrl: String, val thumbUrl: String)
+import com.google.gson.annotations.SerializedName
+
+data class Media(
+    @SerializedName("imageUrl") val imageUrl: String,
+    @SerializedName("smallImageUrl") val smallImageUrl: String,
+    @SerializedName("thumbUrl") val thumbUrl: String
+)

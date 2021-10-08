@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">SneakerShipApp</string>
+
+    <style name="text_header_orange">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/appColour</item>
+        <item name="android:textSize">26sp</item>
+    </style>
 </resources>

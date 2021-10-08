@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId "com.ashok.kanigiri.sneakershipapp"
-        minSdkVersion 16
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -51,6 +51,7 @@ dependencies {
     implementation deps.navigation.fragment_ktx
     implementation deps.navigation.ui
     implementation deps.room.runtime
+    implementation deps.room.ktx
     implementation deps.lifecycle.livedata_ktx
     implementation deps.lifecycle.runtime
     implementation deps.lifecycle.java8
@@ -97,4 +98,5 @@ dependencies {
     androidTestImplementation deps.arch_core.testing
     androidTestImplementation deps.mockito.core
     androidTestImplementation deps.mockito.android
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
 }

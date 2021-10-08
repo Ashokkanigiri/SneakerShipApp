@@ -2,7 +2,9 @@ package com.example.mynewsapp.service.di.modules
 
 import androidx.room.Room
 import com.ashok.kanigiri.sneakershipapp.SneakerShipApplication
+import com.ashok.kanigiri.sneakershipapp.services.room.RoomDataSource
 import com.ashok.kanigiri.sneakershipapp.services.room.SneakerDatabase
+import com.ashok.kanigiri.sneakershipapp.services.room.dao.SneakerDao
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -17,15 +19,15 @@ class RoomModule {
             .allowMainThreadQueries().build()
     }
 
-//    @Singleton
-//    @Provides
-//    fun providesCategorysDao(myAppDatabase: MyAppDatabase): CategoriesDao{
-//        return myAppDatabase.getCategorysDao()
-//    }
-//
-//    @Singleton
-//    @Provides
-//    fun providesRoomRepository(categoriesDao: CategoriesDao): RoomDataSource{
-//        return RoomDataSource(categoriesDao)
-//    }
+    @Singleton
+    @Provides
+    fun providesSneakersDao(sneakerDatabase: SneakerDatabase): SneakerDao{
+        return sneakerDatabase.getSneakerDao()
+    }
+
+    @Singleton
+    @Provides
+    fun providesRoomRepository(sneakerDao: SneakerDao): RoomDataSource {
+        return RoomDataSource(sneakerDao)
+    }
 }

@@ -3,21 +3,22 @@ package com.ashok.kanigiri.sneakershipapp.services.room.models
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
 
 @Entity
 data class Sneaker(
     @PrimaryKey
-    val id: String,
-    val brand: String,
-    val colorway: String,
-    val gender: String,
+    @SerializedName("id") val id : String,
+    @SerializedName("brand") val brand : String,
+    @SerializedName("colorway") val colorway : String,
+    @SerializedName("gender") val gender : String,
+    @SerializedName("name") val name : String,
+    @SerializedName("releaseDate") val releaseDate : String,
+    @SerializedName("retailPrice") val retailPrice : Int,
+    @SerializedName("shoe") val shoe : String,
+    @SerializedName("styleId") val styleId : String,
+    @SerializedName("title") val title : String,
+    @SerializedName("year") val year : Int,
     @Embedded
-    val media: Media,
-    val releaseDate: String,
-    val retailPrice: String,
-    val styleId: String,
-    val shoe: String,
-    val name: String,
-    val title: String,
-    val year: String
+    @SerializedName("media") val media : Media
 )
