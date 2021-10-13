@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View"/>
+
         <variable
             name="viewmodel"
             type="com.ashok.kanigiri.sneakershipapp.feature.home.viewmodel.HomeViewModel" />
@@ -31,6 +33,16 @@
             app:layout_constraintTop_toBottomOf="@+id/header_bar"
             app:setAdapter="@{viewmodel.setAdapter()}"
             tools:listitem="@layout/item_home_data" />
+
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewmodel.progressbarVisibility ? View.VISIBLE: View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/header_bar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

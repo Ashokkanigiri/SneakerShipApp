@@ -16,6 +16,9 @@ interface SneakerDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertSneakers(sneakers: Sneaker)
 
-    @Query("SELECT * FROM sneaker")
+    @Query("SELECT * FROM cart_items")
     fun getAllSneakers(): LiveData<List<Sneaker>>
+
+    @Query("DELETE FROM cart_items WHERE id =:sneakerId")
+    fun removeSneakerFromCart(sneakerId: String)
 }

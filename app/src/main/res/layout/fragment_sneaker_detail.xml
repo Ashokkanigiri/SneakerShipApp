@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="viewmodel"
+            type="com.ashok.kanigiri.sneakershipapp.feature.sneakerdetail.viewmodel.SneakerDetailViewModel" />
+
+        <variable
+            name="sneaker"
+            type="com.ashok.kanigiri.sneakershipapp.services.room.models.Sneaker" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <include
+            android:id="@+id/header_layout"
+            layout="@layout/header_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_shoe_detail"
+            loadImageWithGlide="@{sneaker.media.imageUrl}"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_layout" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/bg_bottom_bar"
+            android:visibility="@{viewmodel.progressBarVisibility ? View.GONE: View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline">
+
+
+            <TextView
+                android:id="@+id/tv_sneaker_title"
+                style="@style/text_header_orange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{sneaker.title}"
+                android:textColor="@color/black"
+                android:gravity="center"
+                app:layout_constraintBottom_toTopOf="@+id/tv_sneaker_desc"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread"
+                tools:text="Sneaker title" />
+
+            <TextView
+                android:id="@+id/tv_sneaker_desc"
+                style="@style/text_desc_med"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sneaker desc"
+                app:layout_constraintBottom_toTopOf="@+id/tv_size_header"
+                app:layout_constraintEnd_toEndOf="@+id/tv_sneaker_title"
+                app:layout_constraintStart_toStartOf="@+id/tv_sneaker_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_sneaker_title"
+                tools:text="@{sneaker.name}" />
+
+            <TextView
+                android:id="@+id/tv_size_header"
+                style="@style/text_desc_med"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Size: Free Size"
+                app:layout_constraintBottom_toTopOf="@+id/tv_colour_header"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start"
+                app:layout_constraintTop_toBottomOf="@+id/tv_sneaker_desc" />
+
+            <TextView
+                android:id="@+id/tv_colour_header"
+                style="@style/text_desc_med"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Colour: Default "
+                app:layout_constraintBottom_toTopOf="@+id/tv_price_header"
+                app:layout_constraintStart_toStartOf="@+id/tv_size_header"
+                app:layout_constraintTop_toBottomOf="@+id/tv_size_header" />
+
+            <TextView
+                android:id="@+id/tv_price_header"
+                style="@style/text_desc_med"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{`Price :  $ ` +sneaker.retailPrice}"
+                app:layout_constraintBottom_toTopOf="@+id/btn_add_cart"
+                app:layout_constraintStart_toStartOf="@+id/tv_size_header"
+                app:layout_constraintTop_toBottomOf="@+id/tv_colour_header"
+                tools:text="Price" />
+
+            <Button
+                android:id="@+id/btn_add_cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> viewmodel.addToCart(sneaker)}"
+                android:text="Add To Cart"
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_price_header" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_start"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="20dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_end"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="20dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="350dp" />
+
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewmodel.progressBarVisibility ? View.VISIBLE: View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

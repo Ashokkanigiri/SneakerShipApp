@@ -28,18 +28,20 @@ class AppModule {
     @Provides
     @Singleton
     fun getOkHttpClientBuilder(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
-        val client =  OkHttpClient.Builder()
-//            .addInterceptor { chain ->
-//                val request = chain.request().newBuilder()
-//                val originalHttpUrl = chain.request().url
-//                val url = originalHttpUrl.newBuilder()
-//                    .addQueryParameter("x-rapidapi-host", "v1-sneakers.p.rapidapi.com")
-//                    .addQueryParameter("x-rapidapi-key", "4cec5f2946msh1a15fa0fd31658ep135f7fjsn8a4dda67eae7").build()
-//                request.url(url)
-//                val response = chain.proceed(request.build())
-//                return@addInterceptor response
-//            }.addInterceptor(loggingInterceptor).build()
-            .addInterceptor(loggingInterceptor).build()
+        val client = OkHttpClient.Builder()
+            .addInterceptor { chain ->
+                val request = chain.request().newBuilder()
+                request.addHeader(
+                    ConstantUtils.API_HOST_HEADER_KEY,
+                    ConstantUtils.API_HOST_HEADER_VALUE
+                )
+                    .addHeader(
+                        ConstantUtils.API_KEY_KEY,
+                        ConstantUtils.API_KEY_VALUE
+                    )
+                val response = chain.proceed(request.build())
+                return@addInterceptor response
+            }.addInterceptor(loggingInterceptor).build()
         return client
     }
 
