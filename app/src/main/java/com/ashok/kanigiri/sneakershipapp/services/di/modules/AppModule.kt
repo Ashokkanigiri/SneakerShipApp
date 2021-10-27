@@ -38,7 +38,7 @@ class AppModule {
                     .addHeader(
                         ConstantUtils.API_KEY_KEY,
                         ConstantUtils.API_KEY_VALUE
-                    )
+                    ).header("Cache-Control", "public, max-age=60")
                 val response = chain.proceed(request.build())
                 return@addInterceptor response
             }.addInterceptor(loggingInterceptor).build()

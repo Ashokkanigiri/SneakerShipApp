@@ -12,7 +12,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:isScrollContainer="true">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,6 +33,7 @@
                 android:layout_height="wrap_content"
                 app:setAdapter="@{viewmodel.setAdapter()}"
                 tools:listitem="@layout/item_add_to_cart"
+                android:nestedScrollingEnabled="false"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toTopOf="@+id/guideline"
                 app:layout_constraintEnd_toEndOf="parent"

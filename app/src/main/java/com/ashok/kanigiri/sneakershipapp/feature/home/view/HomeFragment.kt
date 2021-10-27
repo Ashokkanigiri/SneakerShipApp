@@ -49,6 +49,8 @@ class HomeFragment: Fragment(), Injectable {
         loadData()
         observeViewModel()
         setUpHeaderBar()
+
+        val list = ArrayList<String>()
     }
 
     private fun observeViewModel() {
